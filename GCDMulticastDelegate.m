@@ -95,11 +95,22 @@
 {
 	if (delegate == nil) return;
 	if (delegateQueue == NULL) return;
-	
-	GCDMulticastDelegateNode *node =
-	    [[GCDMulticastDelegateNode alloc] initWithDelegate:delegate delegateQueue:delegateQueue];
-	
-	[delegateNodes addObject:node];
+	BOOL add = YES;
+	for (GCDMulticastDelegateNode delegateNode in delegateNodes) {
+		if (delegateNode.delegate == delegate) {
+			add = NO;
+			break;
+		}
+	}
+
+	if (add) {
+		GCDMulticastDelegateNode *node =
+		    [[GCDMulticastDelegateNode alloc] initWithDelegate:delegate delegateQueue:delegateQueue];
+		
+		[delegateNodes addObject:node];		
+	} else {
+		assert(NO, "Added delegate more than once!");
+	}
 }
 
 - (void)removeDelegate:(id)delegate delegateQueue:(dispatch_queue_t)delegateQueue
