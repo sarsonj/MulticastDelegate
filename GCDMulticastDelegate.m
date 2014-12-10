@@ -96,7 +96,7 @@
 	if (delegate == nil) return;
 	if (delegateQueue == NULL) return;
 	BOOL add = YES;
-	for (GCDMulticastDelegateNode delegateNode in delegateNodes) {
+	for (GCDMulticastDelegateNode* delegateNode in delegateNodes) {
 		if (delegateNode.delegate == delegate) {
 			add = NO;
 			break;
@@ -109,7 +109,9 @@
 		
 		[delegateNodes addObject:node];		
 	} else {
-		assert(NO, "Added delegate more than once!");
+#if DEBUG
+		NSAssert(NO, @"Added delegate more than once!");
+#endif
 	}
 }
 
