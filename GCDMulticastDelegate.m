@@ -95,24 +95,11 @@
 {
 	if (delegate == nil) return;
 	if (delegateQueue == NULL) return;
-	BOOL add = YES;
-	for (GCDMulticastDelegateNode* delegateNode in delegateNodes) {
-		if (delegateNode.delegate == delegate) {
-			add = NO;
-			break;
-		}
-	}
-
-	if (add) {
-		GCDMulticastDelegateNode *node =
-		    [[GCDMulticastDelegateNode alloc] initWithDelegate:delegate delegateQueue:delegateQueue];
-		
-		[delegateNodes addObject:node];		
-	} else {
-#if DEBUG
-		NSAssert(NO, @"Added delegate more than once!");
-#endif
-	}
+	
+	GCDMulticastDelegateNode *node =
+	    [[GCDMulticastDelegateNode alloc] initWithDelegate:delegate delegateQueue:delegateQueue];
+	
+	[delegateNodes addObject:node];
 }
 
 - (void)removeDelegate:(id)delegate delegateQueue:(dispatch_queue_t)delegateQueue
