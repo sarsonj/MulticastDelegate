@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "MulticastDelegate"
-  s.version      = "0.0.2"
+  s.version      = "1.0.0"
   s.summary      = "MulticastDelegate extracted from XMPPFramework."
   s.homepage     = "https://github.com/robbiehanson/XMPPFramework/tree/master/Utilities"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
